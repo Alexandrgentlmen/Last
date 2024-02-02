@@ -1,0 +1,12 @@
+<svg id="svg" fill="#000000" stroke="#000000" width="200px" height="200px" version="1.1" viewBox="144 144 512 512" xmlns="http://www.w3.org/2000/svg">
+    <g id="IconSvg_bgCarrier" stroke-width="0"></g>
+    <g id="IconSvg_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"></g>
+     <g id="IconSvg_iconCarrier">
+      <g xmlns="http://www.w3.org/2000/svg">
+  <path d="m163.84 250.43h472.32v15.742h-472.32z"></path>
+  <path d="m163.84 392.12h283.39v15.742h-283.39z"></path>
+  <path d="m163.84 533.82h472.32v15.742h-472.32z"></path>
+ </g>
+
+      </g>
+      </svg>

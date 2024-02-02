@@ -1,0 +1,20 @@
+.Header {
+  grid-area: header;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {}
+
+.nav {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  height: 100%;
+  align-items: center;
+}
+
+.nav li {
+  font-size: 18px;
+}

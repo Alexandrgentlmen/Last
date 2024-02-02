@@ -1,0 +1,14 @@
+.Navigation {
+  grid-area: nav;
+  width: 100%;
+  font-size: 24px;
+  color: var(--white-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
