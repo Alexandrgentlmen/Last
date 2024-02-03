@@ -1,0 +1,23 @@
+.Container {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.spacearound {
+  justify-content: space-around;
+}
+
+.spacebetween {
+  justify-content: space-between;
+}
+
+.flexstart {
+  justify-content: flex-start;
+}
+
+.flexend {
+  justify-content: flex-end;
+}
