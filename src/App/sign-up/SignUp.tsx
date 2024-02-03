@@ -34,15 +34,16 @@ const validationSchema: yup.ObjectSchema<IInitialValues> = yup.object({
     .oneOf([true], 'Подтверждаю правильность данных.'),
 });
 
-const formik = useFormik<IInitialValues>({
-  initialValues,
-  validationSchema,
-  onSubmit: (values) => {
-    alert(JSON.stringify(values, null, 2));
-  },
-});
-
 export function SignUp() {
+  const formik = useFormik<IInitialValues>({
+    initialValues,
+    enableReinitialize: true,
+    validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
   return (
     <div className={styles.SignUp}>
       <h1>Введите данные при регистрации</h1>
