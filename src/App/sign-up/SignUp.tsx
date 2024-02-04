@@ -3,13 +3,13 @@ import * as yup from 'yup';
 import classnames from 'classnames';
 
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import styles from './SignUp.module.scss';
 import { MyCheckbox } from '~/auth/components/my-checkbox';
 import { MyTextInput } from '~/auth/components/my-textinput';
 import { routes } from '~/router';
 import { useRedirect } from '~/auth/hooks/useRedirect';
 import { authSlice } from '~/auth/store/authSlice';
+import { useAppDispatch } from '~/store/hooks';
 
 interface IInitialValues {
   email: string;
@@ -39,12 +39,12 @@ const validationSchema: yup.ObjectSchema<IInitialValues> = yup.object({
 });
 
 export function SignUp() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   useRedirect();
   return (
     <div className={styles.SignUp}>
       <h3>Введите email и пароль</h3>
-      <Formik
+      <Formik<IInitialValues>
         {...{
           initialValues,
           enableReinitialize: true,

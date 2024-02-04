@@ -8,8 +8,8 @@ interface RequireProps {
 
 export const RequireAuth = ({ children }: RequireProps) => {
   const location = useLocation();
-  // const isAuth = useAppSelector((state) => state.auth.isAuth);
-  const isAuth = false;
+  const isAuth = useAppSelector((state) => state.authSlice.isAuth);
+  // const isAuth = false;
   if (!isAuth) {
     return <Navigate to={routes.LOGIN_PAGE} state={{ from: location }} />;
   }

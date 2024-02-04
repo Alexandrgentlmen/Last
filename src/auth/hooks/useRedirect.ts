@@ -7,8 +7,8 @@ export function useRedirect() {
   const location = useLocation();
   const navigate = useNavigate();
   const fromThisPage = location.state?.from ?? routes.TODO_LIST;
-  // const isAuth = useAppSelector((state) => state.auth.isAuth);
-  const isAuth = localStorage.getItem('token');
+  const isAuth = useAppSelector((state) => state.authSlice.isAuth);
+  console.log(isAuth);
   const authRedirect = () => {
     navigate(fromThisPage, { replace: true });
   };

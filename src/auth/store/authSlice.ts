@@ -1,10 +1,16 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { ILoginPayload, UserData } from '../auth.types';
 import { authApi } from '../api/authApi';
+import {
+  RequestStateProperty,
+  makeRequestStateProperty,
+} from '~/store/helpers';
+import { ApiError } from '~/api/common.types';
 
 const SLICE_NAME = 'auth';
 
 interface IS {
+  loginRequest: RequestStateProperty<unknown, ApiError>;
   userProfile: UserData | null;
   isAuth: boolean;
   isLoading: boolean;
@@ -12,6 +18,7 @@ interface IS {
 }
 
 const initialState: IS = {
+  loginRequest: makeRequestStateProperty(),
   userProfile: null,
   isAuth: false,
   isLoading: false,
@@ -28,6 +35,21 @@ const { actions, reducer } = createSlice({
     setUserData: (state, action: PayloadAction<UserData | null>) => {
       state.userProfile = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(authLoginThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(authLoginThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.loginRequest.data = action.payload;
+      })
+      .addCase(authLoginThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload || action.error;
+      });
   },
 });
 

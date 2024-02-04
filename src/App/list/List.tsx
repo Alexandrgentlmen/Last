@@ -7,7 +7,7 @@ const TODO_LIST = Array(6)
   .map(() => getUUID());
 
 export function List() {
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   return (
     <main className={styles.List}>

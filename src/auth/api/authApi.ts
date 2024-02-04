@@ -1,8 +1,8 @@
-import { IAuthPayload } from '../auth.types';
+import { ILoginPayload } from '../auth.types';
 import { KEY_TOKEN } from '~/api/const';
 import { axiosInstance, axiosInstanceWithAuth } from '~/api/apiTransport';
 
-export const login = async (payload: IAuthPayload) => {
+export const login = async (payload: ILoginPayload) => {
   const res = await axiosInstance.request({
     method: 'post',
     url: 'auth/login',
