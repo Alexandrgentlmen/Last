@@ -1,27 +1,28 @@
-import { FieldHookConfig, useField } from 'formik';
+import { FieldHookConfig, useField, useFormikContext } from 'formik';
 
 import { ClassAttributes, InputHTMLAttributes } from 'react';
 import styles from './MyCheckbox.module.scss';
 
 interface OtherProps {
-  label: string;
+  name: string;
 }
 export const MyCheckbox = ({
+  name,
   children,
-  ...props
 }: OtherProps &
   FieldHookConfig<string> &
   InputHTMLAttributes<HTMLInputElement> &
   ClassAttributes<HTMLInputElement>) => {
-  const [field, meta] = useField({ ...props, type: 'checkbox' });
+  const formik = useFormikContext();
+
   return (
     <>
       <label className={styles.MyCheckbox}>
-        <input {...field} {...props} type="checkbox" />
+        <input {...formik.getFieldProps(name)} type="checkbox" />
         {children}
       </label>
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
+      {formik.getFieldMeta(name).touched && formik.getFieldMeta(name).error ? (
+        <div className="error">{formik.getFieldMeta(name).error}</div>
       ) : null}
     </>
   );

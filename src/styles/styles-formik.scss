@@ -447,76 +447,8 @@ input[type="button"]:focus-visible {
   outline: none;
 }
 
-/* Tables
-––––––––––––––––––––––––––––––––– */
-table {
+.submitBtnFormik {
   width: 100%;
-  border-spacing: 0;
-  margin-bottom: 1.563rem;
-  font-variant-numeric: tabular-nums;
-}
-
-th,
-td {
-  padding: 0.5rem 0.5rem 0.5rem 0;
-  margin: 0;
-}
-
-th {
-  font-weight: bold;
-  text-align: left;
-  border-bottom: 2px solid var(--gray-300);
-  color: var(--gray-300);
-}
-
-@media (prefers-color-scheme: dark) {
-  th {
-    border-color: var(--gray-700);
-    color: var(--gray-700);
-  }
-}
-
-td {
-  border-bottom: 2px solid var(--gray-300);
-}
-
-@media (prefers-color-scheme: dark) {
-  td {
-    border-color: var(--gray-700);
-  }
-}
-
-/* Code
-––––––––––––––––––––––––––––––––– */
-code {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
-    monospace;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  background: var(--gray-100);
-  padding: 0 0.328rem;
-  display: inline-block;
-  vertical-align: middle;
-  border-radius: 10px;
-}
-
-@media (prefers-color-scheme: dark) {
-  code {
-    background-color: var(--gray-700);
-  }
-}
-
-p>code {
-  white-space: normal;
-}
-
-pre>code {
-  line-height: 1.563em;
-  display: block;
-  padding: 1rem;
-  white-space: pre;
-  margin-bottom: 1.563rem;
-  overflow: scroll;
 }
 
 /* Forces a new-line at the end of a code block for layout purposes. */
@@ -536,30 +468,6 @@ blockquote {
   blockquote {
     border-left: 0.25rem solid var(--gray-700);
   }
-}
-
-/* List
-––––––––––––––––––––––––––––––––– */
-ul {
-  margin: 0;
-  padding: 0 1px;
-  list-style: disc outside;
-  font-variant-numeric: tabular-nums;
-}
-
-ol {
-  list-style: decimal outside;
-}
-
-ol,
-ul {
-  padding-left: 0;
-  margin-top: 0;
-  margin-bottom: 1.563rem;
-}
-
-li {
-  list-style-position: inside;
 }
 
 /* Keyboard

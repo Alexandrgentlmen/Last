@@ -1,11 +1,15 @@
-import { Form, useFormik } from 'formik';
+import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import classnames from 'classnames';
+
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import styles from './SignUp.module.scss';
-import { MyCheckbox } from '~/auth/my-checkbox';
-import { MyTextInput } from '~/auth/my-textinput';
+import { MyCheckbox } from '~/auth/components/my-checkbox';
+import { MyTextInput } from '~/auth/components/my-textinput';
 import { routes } from '~/router';
+import { useRedirect } from '~/auth/hooks/useRedirect';
+import { authSlice } from '~/auth/store/authSlice';
 
 interface IInitialValues {
   email: string;
@@ -31,48 +35,57 @@ const validationSchema: yup.ObjectSchema<IInitialValues> = yup.object({
   acceptedTerms: yup
     .boolean()
     .required('Обязательное поле')
-    .oneOf([true], 'Подтверждаю правильность данных.'),
+    .oneOf([true], 'Подтвердите правильность данных.'),
 });
 
 export function SignUp() {
-  const formik = useFormik<IInitialValues>({
-    initialValues,
-    enableReinitialize: true,
-    validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
-
+  const dispatch = useDispatch();
+  useRedirect();
   return (
     <div className={styles.SignUp}>
-      <h1>Введите данные при регистрации</h1>
+      <h3>Введите email и пароль</h3>
+      <Formik
+        {...{
+          initialValues,
+          enableReinitialize: true,
+          validationSchema,
+          onSubmit: (values) => {
+            dispatch(
+              authSlice.thunks.authLoginThunk({
+                authPayload: values,
+              }),
+            );
+          },
+        }}
+      >
+        <Form noValidate autoComplete={'off'}>
+          <MyTextInput
+            label="Email"
+            name="email"
+            type="email"
+            placeholder="email@gmail.ru"
+          />
+          <MyTextInput
+            label="Password"
+            name="password"
+            type="password"
+            placeholder="password"
+          />
+          <MyCheckbox name="acceptedTerms">
+            Я подтверждаю ввёдённые данные
+          </MyCheckbox>
 
-      <Form onSubmit={formik.handleSubmit} noValidate autoComplete={'off'}>
-        <MyTextInput
-          label="Password"
-          name="password"
-          type="password"
-          placeholder="password"
-        />
-        <MyTextInput
-          label="Email"
-          name="email"
-          type="email"
-          placeholder="email@gmail.ru"
-        />
-        <MyCheckbox name="acceptedTerms">
-          Я подтверждаю ввёдённые данные
-        </MyCheckbox>
-
-        <button className={'submitBtnFormik'} type="submit">
-          Войти
-        </button>
-        <button>
-          Нет аккаунта?
-          <Link to={routes.REGISTER_PAGE}>Зарегистрироваться</Link>
-        </button>
-      </Form>
+          <button className={'submitBtnFormik'} type="submit">
+            Войти
+          </button>
+          <p className={'centred'}>
+            Нет аккаунта?
+            <Link className={'button-registration'} to={routes.REGISTER_PAGE}>
+              &nbsp;Зарегистрироваться
+            </Link>
+          </p>
+        </Form>
+      </Formik>
     </div>
   );
 }

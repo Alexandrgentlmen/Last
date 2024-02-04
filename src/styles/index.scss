@@ -46,6 +46,15 @@ a {
   cursor: pointer;
 }
 
+.button-registration {
+  color: var(--iris-color);
+}
+
+.centred {
+  display: flex;
+  justify-content: center;
+}
+
 .list-reset {
   list-style: none;
   margin: 0;
